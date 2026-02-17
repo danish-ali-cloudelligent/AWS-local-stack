@@ -1,11 +1,10 @@
 *.js
 !jest.config.js
 *.d.ts
-node_modules
+node_modules/
 cdk.out
 .cdk.staging
 cdk.context.json
 lambda/lambda.zip
-lambda/node_modules
 localstack-data
 output.json
