@@ -2,6 +2,7 @@
 !jest.config.js
 *.d.ts
 node_modules/
+lambda/node_modules/
 cdk.out
 .cdk.staging
 cdk.context.json
