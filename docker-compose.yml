@@ -6,7 +6,7 @@ services:
       - "4566:4566"
       - "4571:4571"
     environment:
-      - SERVICES=lambda,appsync,iam
+      - SERVICES=lambda,iam,ssm,cloudformation,s3
       - DEBUG=1
       - DATA_DIR=/tmp/localstack-data
       - CLEAN_TMP_DIR=false

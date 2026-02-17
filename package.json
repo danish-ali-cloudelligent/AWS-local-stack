@@ -1,0 +1,34 @@
+{
+  "name": "localstack",
+  "version": "1.0.0",
+  "description": "Local AWS development environment using LocalStack with AppSync, Lambda, and PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "deploy": "cdklocal deploy",
+    "synth": "cdklocal synth",
+    "destroy": "cdklocal destroy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danish-ali-cloudelligent/AWS-local-stack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danish-ali-cloudelligent/AWS-local-stack/issues"
+  },
+  "homepage": "https://github.com/danish-ali-cloudelligent/AWS-local-stack#readme",
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "aws-cdk-lib": "^2.238.0",
+    "constructs": "^10.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
+}

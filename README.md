@@ -1,47 +1,61 @@
-# LocalStack AWS Development Environment
+# LocalStack AWS Development Environment with CDK
 
-Local AWS development environment using LocalStack with AppSync, Lambda, and PostgreSQL.
+Local AWS development environment using AWS CDK with LocalStack, Lambda, and PostgreSQL.
 
 ## Services
 
-- **LocalStack**: AWS Lambda, AppSync, IAM
+- **LocalStack**: AWS Lambda, IAM
 - **PostgreSQL**: Database (port 5432)
 - **Lambda**: Node.js function connecting to Postgres
-- **AppSync**: GraphQL API
+- **AWS CDK**: Infrastructure as Code
 
 ## Prerequisites
 
 - Docker & Docker Compose
-- AWS CLI with `awslocal` wrapper
 - Node.js & npm
+- AWS CDK CLI (`npm install -g aws-cdk`)
+- CDK Local wrapper (`npm install -g aws-cdk-local`)
 
 ## Setup
 
-1. Start services:
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start LocalStack:
 ```bash
 docker-compose up -d
 ```
 
-2. Run setup script:
+3. Deploy with CDK:
 ```bash
-./setup.sh
+./deploy.sh
 ```
 
-This will:
-- Package and deploy the Lambda function
-- Create IAM role
-- Create AppSync API with API key
-- Configure Lambda data source and resolver
+Or manually:
+```bash
+npm run deploy
+```
 
-## Lambda Function
+## Project Structure
 
-Located in `lambda/index.js`. Connects to PostgreSQL and returns current timestamp.
+```
+├── bin/
+│   └── app.ts           # CDK app entry point
+├── lib/
+│   └── localstack-stack.ts  # CDK stack definition
+├── lambda/
+│   └── index.js         # Lambda function code
+├── cdk.json             # CDK configuration
+└── docker-compose.yml   # LocalStack & Postgres
+```
 
-**Dependencies**: `pg` (PostgreSQL client)
+## CDK Commands
 
-## GraphQL Schema
-
-Schema defined in `graphql/schema.graphql` with Book and Movie types.
+- `npm run synth` - Synthesize CloudFormation template
+- `npm run deploy` - Deploy stack to LocalStack
+- `npm run destroy` - Destroy stack
 
 ## Configuration
 
@@ -53,4 +67,9 @@ Schema defined in `graphql/schema.graphql` with Book and Movie types.
 
 ## Usage
 
-After setup, query AppSync API using the generated API ID and key (displayed in setup output).
+After deployment, check the CDK outputs for Lambda ARN and name. Invoke the Lambda function:
+
+```bash
+awslocal lambda invoke --function-name myLambda output.json
+cat output.json
+```
