@@ -1,0 +1,16 @@
+type Book {
+  id: ID!
+  title: String!
+  author: String!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  director: String!
+}
+
+type Query {
+  ListBooks: [Book!]!
+  ListMovies: [Movie!]!
+}
